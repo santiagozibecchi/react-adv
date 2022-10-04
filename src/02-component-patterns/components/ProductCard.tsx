@@ -34,7 +34,7 @@ interface ProductButtonProps {
    counter: number;
 }
 
-export const ProductButton = ({ increaseBy, counter }: ProductButtonProps) => {
+export const ProductButtons = ({ increaseBy, counter }: ProductButtonProps) => {
    return (
       <div className={styles.buttonsContainer}>
          <button onClick={() => increaseBy(-1)} className={styles.buttonMinus}>
@@ -51,10 +51,9 @@ export const ProductButton = ({ increaseBy, counter }: ProductButtonProps) => {
 export const ProductCard = ({ children, product }: Props) => {
    const { counter, increaseBy } = useProduct();
 
-   return (
-      <div className={styles.productCard}>
-         {children}
-
-      </div>
-   );
+   return <div className={styles.productCard}>{children}</div>;
 };
+
+ProductCard.Title = ProductTitle;
+ProductCard.Image = ProductImage;
+ProductCard.Buttons = ProductButtons;

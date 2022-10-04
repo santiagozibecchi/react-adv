@@ -1,5 +1,5 @@
 import {
-   ProductButton,
+   ProductButtons,
    ProductCard,
    ProductImage,
    ProductTitle,
@@ -24,10 +24,18 @@ export const ShoppingPage = () => {
             }}
          >
             <ProductCard product={product}>
-               <ProductImage />
-               <ProductTitle />
-               <ProductButton />
+               <ProductCard.Image />
+               <ProductCard.Title title="Hola" />
+               {/* <ProductCard.Buttons /> */}
             </ProductCard>
+
+            {/* <ProductCard product={product}>
+               <ProductButtons increaseBy={function (value: number): void {
+                  throw new Error("Function not implemented.");
+               } } counter={0} />
+               <ProductImage />
+               <ProductTitle title="Coffe"/>
+            </ProductCard> */}
          </div>
       </div>
    );
