@@ -23,11 +23,11 @@ export const ShoppingPage = () => {
                flexWrap: "wrap",
             }}
          >
-            {/* <ProductCard product={product}>
+            <ProductCard product={product}>
                <ProductCard.Image />
                <ProductCard.Title />
                <ProductCard.Buttons />
-            </ProductCard> */}
+            </ProductCard>
 
             <ProductCard product={product}>
                <ProductImage />
