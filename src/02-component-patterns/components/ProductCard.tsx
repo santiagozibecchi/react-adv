@@ -17,6 +17,7 @@ export interface Props {
    product: Product;
    style?: React.CSSProperties;
    onChange?: (args: onChangeArgs) => void;
+   value?: number;
 }
 
 export const ProductCard = ({
@@ -25,9 +26,10 @@ export const ProductCard = ({
    className,
    style,
    onChange,
+   value,
 }: Props) => {
    // objeto que simplemente tenga toda la info que necesito enviarsela al custom hook
-   const { counter, increaseBy } = useProduct({ onChange, product });
+   const { counter, increaseBy } = useProduct({ onChange, product, value });
 
    return (
       <Provider

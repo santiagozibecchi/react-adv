@@ -24,7 +24,7 @@ const product2 = {
 const products: Product[] = [product1, product2];
 
 interface ProductInCart extends Product {
-   count: Number;
+   count: number;
 }
 
 export const ShoppingPage = () => {
@@ -92,7 +92,7 @@ export const ShoppingPage = () => {
                   style={{
                      width: "100px",
                   }}
-                  // onChange={onProductCountChange}
+                  value={product.count}
                >
                   <ProductImage className="custom-image" />
                   <ProductButtons className="custom-buttons" />
