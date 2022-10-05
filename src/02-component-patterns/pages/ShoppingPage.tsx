@@ -6,14 +6,35 @@ import {
 } from "../components";
 
 import "../styles/custom-styles.css";
+import { Product } from "../interfaces/interfaces";
+import { useState } from "react";
 
-const product = {
+const product1 = {
    id: "1",
    title: "Coffe Mug",
    img: "./coffee-mug.png",
 };
 
+const product2 = {
+   id: "2",
+   title: "Coffe Mug - Meme",
+   img: "./coffee-mug2.png",
+};
+
+const products: Product[] = [product1, product2];
+
+interface ProductInCart extends Product {
+   count: Number;
+}
+
 export const ShoppingPage = () => {
+   const [shoppingCard, setShoppingCard] = useState<{
+      [key: string]: ProductInCart;
+   }>({
+      "1": { ...product1, count: 10 },
+      "2": { ...product1, count: 1 },
+   });
+
    return (
       <div>
          <h1>Shopping Store</h1>
@@ -25,15 +46,38 @@ export const ShoppingPage = () => {
                flexWrap: "wrap",
             }}
          >
-            <ProductCard product={product}>
-               <ProductCard.Image className="custom-image" />
-               <ProductCard.Title />
-               <ProductCard.Buttons />
-            </ProductCard>
+            {products.map((product) => (
+               <ProductCard
+                  key={product.id}
+                  className="bg-dark text-bold"
+                  product={product}
+               >
+                  <ProductImage className="custom-image" />
+                  <ProductTitle className="text-white" />
+                  <ProductButtons className="custom-buttons" />
+               </ProductCard>
+            ))}
+         </div>
 
-            <ProductCard className="bg-dark text-bold" product={product}>
+         <div className="shopping-cart">
+            <ProductCard
+               className="bg-dark text-bold"
+               product={product2}
+               style={{
+                  width: "100px",
+               }}
+            >
                <ProductImage className="custom-image" />
-               <ProductTitle className="text-white" />
+               <ProductButtons className="custom-buttons" />
+            </ProductCard>
+            <ProductCard
+               className="bg-dark text-bold"
+               product={product1}
+               style={{
+                  width: "100px",
+               }}
+            >
+               <ProductImage className="custom-image" />
                <ProductButtons className="custom-buttons" />
             </ProductCard>
          </div>
