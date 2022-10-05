@@ -35,6 +35,10 @@ export const ShoppingPage = () => {
       "2": { ...product1, count: 1 },
    });
 
+   const onProductCountChange = () => {
+      console.log("onProductCountChange");
+   };
+
    return (
       <div>
          <h1>Shopping Store</h1>
@@ -51,6 +55,7 @@ export const ShoppingPage = () => {
                   key={product.id}
                   className="bg-dark text-bold"
                   product={product}
+                  onChange={onProductCountChange}
                >
                   <ProductImage className="custom-image" />
                   <ProductTitle className="text-white" />
@@ -66,6 +71,7 @@ export const ShoppingPage = () => {
                style={{
                   width: "100px",
                }}
+               onChange={onProductCountChange}
             >
                <ProductImage className="custom-image" />
                <ProductButtons className="custom-buttons" />
