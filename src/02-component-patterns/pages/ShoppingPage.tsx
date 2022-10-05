@@ -30,14 +30,24 @@ interface ProductInCart extends Product {
 export const ShoppingPage = () => {
    const [shoppingCard, setShoppingCard] = useState<{
       [key: string]: ProductInCart;
-   }>({
-      "1": { ...product1, count: 10 },
-      "2": { ...product1, count: 1 },
-   });
+   }>({});
 
    const onProductCountChange = ({ count, product }: onChangeArgs) => {
-      console.log(count);
-      console.log(product);
+      setShoppingCard((oldShoppingCardState) => {
+         if (count === 0) {
+            const { [product.id]: toDelete, ...rest } = oldShoppingCardState;
+            console.log(product);
+
+            return {
+               ...rest,
+            };
+         }
+
+         return {
+            ...oldShoppingCardState,
+            [product.id]: { ...product, count },
+         };
+      });
    };
 
    return (
@@ -87,6 +97,9 @@ export const ShoppingPage = () => {
                <ProductImage className="custom-image" />
                <ProductButtons className="custom-buttons" />
             </ProductCard>
+         </div>
+         <div>
+            <code>{JSON.stringify(shoppingCard, null, 5)}</code>
          </div>
       </div>
    );
