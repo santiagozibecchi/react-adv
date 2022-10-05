@@ -6,9 +6,10 @@ import styles from "../styles/styles.module.css";
 export interface Props {
    className?: string;
    img?: string;
+   style?: React.CSSProperties;
 }
 
-export const ProductImage = ({ img = "", className }: Props) => {
+export const ProductImage = ({ img = "", className, style }: Props) => {
    // Si mando una imagen mediante las props es la img que quiere sobreescribir
 
    const { product } = useContext(ProductContext);
@@ -26,6 +27,7 @@ export const ProductImage = ({ img = "", className }: Props) => {
    return (
       <img
          className={`${styles.productImg} ${className}`}
+         style={style}
          src={imgToShow}
          alt="Product"
       />

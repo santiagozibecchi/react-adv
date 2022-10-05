@@ -11,9 +11,10 @@ export interface Props {
    children?: ReactElement | ReactElement[];
    className?: string;
    product: Product;
+   style?: React.CSSProperties;
 }
 
-export const ProductCard = ({ children, product, className }: Props) => {
+export const ProductCard = ({ children, product, className, style }: Props) => {
    const { counter, increaseBy } = useProduct();
 
    return (
@@ -24,7 +25,9 @@ export const ProductCard = ({ children, product, className }: Props) => {
             product,
          }}
       >
-         <div className={`${styles.productCard} ${className}`}>{children}</div>
+         <div className={`${styles.productCard} ${className}`} style={style}>
+            {children}
+         </div>
       </Provider>
    );
 };
