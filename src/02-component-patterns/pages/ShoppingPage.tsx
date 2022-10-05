@@ -32,6 +32,8 @@ export const ShoppingPage = () => {
       [key: string]: ProductInCart;
    }>({});
 
+   console.log(Object.values(shoppingCard));
+
    const onProductCountChange = ({ count, product }: onChangeArgs) => {
       setShoppingCard((oldShoppingCardState) => {
          if (count === 0) {
@@ -70,36 +72,32 @@ export const ShoppingPage = () => {
                >
                   <ProductImage className="custom-image" />
                   <ProductTitle className="text-white" />
-                  <ProductButtons className="custom-buttons" />
+                  <ProductButtons
+                     className="custom-buttons"
+                     style={{
+                        display: "flex",
+                        justifyContent: "center",
+                     }}
+                  />
                </ProductCard>
             ))}
          </div>
 
          <div className="shopping-cart">
-            <ProductCard
-               className="bg-dark text-bold"
-               product={product2}
-               style={{
-                  width: "100px",
-               }}
-               // onChange={onProductCountChange}
-            >
-               <ProductImage className="custom-image" />
-               <ProductButtons className="custom-buttons" />
-            </ProductCard>
-            <ProductCard
-               className="bg-dark text-bold"
-               product={product1}
-               style={{
-                  width: "100px",
-               }}
-            >
-               <ProductImage className="custom-image" />
-               <ProductButtons className="custom-buttons" />
-            </ProductCard>
-         </div>
-         <div>
-            <code>{JSON.stringify(shoppingCard, null, 5)}</code>
+            {Object.values(shoppingCard).map((product) => (
+               <ProductCard
+                  key={product.id}
+                  className="bg-dark text-bold"
+                  product={product}
+                  style={{
+                     width: "100px",
+                  }}
+                  // onChange={onProductCountChange}
+               >
+                  <ProductImage className="custom-image" />
+                  <ProductButtons className="custom-buttons" />
+               </ProductCard>
+            ))}
          </div>
       </div>
    );
