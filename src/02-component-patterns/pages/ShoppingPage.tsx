@@ -6,7 +6,7 @@ import {
 } from "../components";
 
 import "../styles/custom-styles.css";
-import { Product } from "../interfaces/interfaces";
+import { onChangeArgs, Product } from "../interfaces/interfaces";
 import { useState } from "react";
 
 const product1 = {
@@ -35,8 +35,9 @@ export const ShoppingPage = () => {
       "2": { ...product1, count: 1 },
    });
 
-   const onProductCountChange = () => {
-      console.log("onProductCountChange");
+   const onProductCountChange = ({ count, product }: onChangeArgs) => {
+      console.log(count);
+      console.log(product);
    };
 
    return (
@@ -71,7 +72,7 @@ export const ShoppingPage = () => {
                style={{
                   width: "100px",
                }}
-               onChange={onProductCountChange}
+               // onChange={onProductCountChange}
             >
                <ProductImage className="custom-image" />
                <ProductButtons className="custom-buttons" />
