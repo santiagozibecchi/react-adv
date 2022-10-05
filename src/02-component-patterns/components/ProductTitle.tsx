@@ -3,8 +3,9 @@ import { ProductContext } from "./ProductCard";
 import styles from "../styles/styles.module.css";
 
 export interface Props {
-   title?: string;
+   activeClass?: string;
    className?: string;
+   title?: string;
 }
 
 export const ProductTitle = ({ title, className }: Props) => {

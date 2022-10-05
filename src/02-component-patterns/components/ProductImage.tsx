@@ -4,8 +4,8 @@ import noImage from "../assets/no-image.jpg";
 import styles from "../styles/styles.module.css";
 
 export interface Props {
-   img?: string;
    className?: string;
+   img?: string;
 }
 
 export const ProductImage = ({ img = "", className }: Props) => {

@@ -8,9 +8,9 @@ export const ProductContext = createContext({} as ProductContextProps);
 const { Provider } = ProductContext;
 
 export interface Props {
-   product: Product;
    children?: ReactElement | ReactElement[];
    className?: string;
+   product: Product;
 }
 
 export const ProductCard = ({ children, product, className }: Props) => {
