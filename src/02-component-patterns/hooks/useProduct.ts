@@ -26,6 +26,7 @@ export const useProduct = ({
    };
 
    // Pendiente del valor para actualizarlo al valor que recibe
+   // Para setear el nuevo valor del counter en la tarjeta del carrito de compras
    useEffect(() => {
       setCounter(value);
    }, [value]);

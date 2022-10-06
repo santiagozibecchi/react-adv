@@ -32,7 +32,7 @@ export const ShoppingPage = () => {
       [key: string]: ProductInCart;
    }>({});
 
-   console.log(Object.values(shoppingCard));
+   console.log(shoppingCard);
 
    const onProductCountChange = ({ count, product }: onChangeArgs) => {
       setShoppingCard((oldShoppingCardState) => {
@@ -69,6 +69,8 @@ export const ShoppingPage = () => {
                   className="bg-dark text-bold"
                   product={product}
                   onChange={onProductCountChange}
+                  // Primero accedo al key del objeto mediando la propiedad computada/ dinamica, si existe porque puede ser undefined, sino retornar el valor inicial de cero {1: {…}}
+                  value={shoppingCard[product.id]?.count || 0}
                >
                   <ProductImage className="custom-image" />
                   <ProductTitle className="text-white" />
@@ -93,6 +95,7 @@ export const ShoppingPage = () => {
                      width: "100px",
                   }}
                   value={product.count}
+                  onChange={onProductCountChange}
                >
                   <ProductImage className="custom-image" />
                   <ProductButtons className="custom-buttons" />
