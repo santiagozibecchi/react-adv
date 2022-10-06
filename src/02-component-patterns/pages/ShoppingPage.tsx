@@ -32,22 +32,27 @@ export const ShoppingPage = () => {
       [key: string]: ProductInCart;
    }>({});
 
-   console.log(shoppingCard);
-
    const onProductCountChange = ({ count, product }: onChangeArgs) => {
       setShoppingCard((oldShoppingCardState) => {
-         if (count === 0) {
-            const { [product.id]: toDelete, ...rest } = oldShoppingCardState;
-            console.log(product);
+         // Si el product.id existe lo obtengo, caso contrario, si es nulo, creo uno y con el contador inicializado en cero
+         const productInCard: ProductInCart = oldShoppingCardState[
+            product.id
+         ] || { ...product, count: 0 };
 
+         // Cuando existe un articulo y tiene mas de una unidad
+         if (Math.max(productInCard.count + count, 0) > 0) {
+            productInCard.count += count;
             return {
-               ...rest,
+               ...oldShoppingCardState,
+               [product.id]: productInCard,
             };
          }
 
+         // Eliminar un producto, significa que no existe o que la sumatoria es menor que cero
+         const { [product.id]: toDelete, ...rest } = oldShoppingCardState;
+
          return {
-            ...oldShoppingCardState,
-            [product.id]: { ...product, count },
+            ...rest,
          };
       });
    };
@@ -105,3 +110,19 @@ export const ShoppingPage = () => {
       </div>
    );
 };
+
+// setShoppingCard anterior - Forma mas sencilla
+/*if (count === 0) {
+            const { [product.id]: toDelete, ...rest } = oldShoppingCardState;
+            console.log(product);
+
+            return {
+               ...rest,
+            };
+         }
+
+         return {
+            ...oldShoppingCardState,
+            [product.id]: { ...product, count },
+         };
+      }*/
