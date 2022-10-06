@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { onChangeArgs, Product } from "../interfaces/interfaces";
 
 interface useProductsArgs {
@@ -14,7 +14,14 @@ export const useProduct = ({
 }: useProductsArgs) => {
    const [counter, setCounter] = useState(value);
 
+   // Utilizo una referencia para saber si mi funcion (en este caso onChange) esta siendo controlado o no, es decir, si se encuentra como una propiedad en el componente.
+   const isControlled = useRef(!!onChange);
+
    const increaseBy = (value: number) => {
+      if (isControlled.current) {
+         return onChange!({ count: value, product });
+      }
+
       // ultimo valor
       const newValue = Math.max(counter + value, 0);
 
